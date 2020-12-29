@@ -12,7 +12,7 @@ object OneLayerPerceptrone extends App {
   lazy val weights: ArrayBuffer[Double] = ArrayBuffer.fill[Double](size + 1)(Random.nextDouble()) // initialize weight with random [0, 1] numbers
   lazy val epoch: Int = 3000 // 30 000 - best
 
-  def trainModel(ds: Array[Array[Double]], isTrace: Boolean): Unit = { // searching for the best logistic coefficients
+  def trainModel(ds: Array[Array[Double]], isTrace: Boolean): Unit = { // searching for the best coefficients
     var prediction: Double = 0 // initial value
 
     for (index <- 0 to epoch) {
@@ -33,10 +33,10 @@ object OneLayerPerceptrone extends App {
   lazy val learningAccuracy: Double = testModel(learning, weights)
   lazy val testAccuracy: Double = testModel(test, weights)
 
-  def calculate(trace: Boolean): Unit = {
-    trainModel(learning, trace) // set second argument as True to display "max_iter" - error on epoch
-    printRegressionInfo("4 - One Layer Perceptrone", weights, learningAccuracy, testAccuracy)
+  def calculate(isTrace: Boolean): Unit = {
+    trainModel(learning, isTrace) // set second argument as True to display "max_iter" - error on epoch
+    printRegressionInfo(labAndMethod = "4 - One Layer Perceptrone", weights = weights, learning = learningAccuracy, test = testAccuracy)
   }
 
-  calculate(false)
+  calculate(isTrace = false)
 }

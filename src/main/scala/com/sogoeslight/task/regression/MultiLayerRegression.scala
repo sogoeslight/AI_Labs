@@ -46,7 +46,7 @@ object MultiLayerRegression extends App {
         val ideal: Double = row.last // 0 or 1
         val actual: Double = network.last.head.output
         var fDerivative: Double = 1 - actual * actual // for tangh
-        network.last.head.error = (ideal - actual) * fDerivative
+        network.last.head.error = (ideal - actual) * fDerivative // TODO: rework this as in Loss.png
 
         for (layerIndex <- network.tail.indices) { // calculate error
           for ((neuron, index) <- network(layerIndex).zipWithIndex) {
